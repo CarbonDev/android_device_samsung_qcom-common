@@ -19,7 +19,7 @@ PRODUCT_COPY_FILES += \
 
 # Media config
 PRODUCT_COPY_FILES += \
-	device/samsung/qcom-common/configs/media_codecs.xml:system/etc/media_codecs.xml
+    device/samsung/qcom-common/media/media_codecs.xml:system/etc/media_codecs.xml
 
 # QCOM Display
 PRODUCT_PACKAGES += \
@@ -36,7 +36,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.composition.type=dyn \
     persist.hwc.mdpcomp.enable=true \
     debug.mdpcomp.logs=0 \
-    debug.egl.recordable.rgba8888=1
+    ro.telephony.ril_class=SamsungQualcommRIL
 
 # GalaxyS3Settings
 # TODO: Move here
@@ -70,6 +70,19 @@ PRODUCT_COPY_FILES += \
     system/extras/bugmailer/bugmailer.sh:system/bin/bugmailer.sh \
     system/extras/bugmailer/send_bug:system/bin/send_bug
 
+# Thermal profiles
+PRODUCT_PACKAGES += \
+    thermald-8064ab.conf \
+    thermald-8064.conf \
+    thermald-8930.conf \
+    thermald-8930ab.conf \
+    thermald-8960.conf \
+    thermald-8960ab.conf \
+    thermal-engine-8064ab.conf \
+    thermal-engine-8064.conf \
+    thermal-engine-8930.conf \
+    thermal-engine-8960.conf
+
 # Init scripts
 PRODUCT_PACKAGES += \
     init.qcom.post_boot.sh \
@@ -84,10 +97,11 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
     lpm.rc \
     init.qcom.lpm_boot.sh \
-    init.qcom.thermald_conf.sh
+    init.qcom.thermal_conf.sh \
+    init.recovery.qcom.rc \
+    init.qcom.ril.sh
 
 # Charger
 PRODUCT_PACKAGES += charger charger_res_images
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-
